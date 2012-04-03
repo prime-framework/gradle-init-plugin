@@ -76,6 +76,12 @@ class InitPlugin implements Plugin<Project> {
         if (project.gradle.startParameter.mergedSystemProperties.containsKey("current")) {
           name = "$project.name-current"
         }
+
+        iml {
+          whenMerged { module ->
+            module.dependencies*.exported = false
+          }
+        }
       }
     }
 
