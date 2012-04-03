@@ -39,11 +39,9 @@ dependencies {
 
 repositories {
   ivy {
-    name = "ivyLocal"
     url "${project.gradle.gradleUserHomeDir}/integration-cache"
   }
   ivy {
-    name "releaseRepository"
     ivyPattern "file:///$releasePlugin.inversoftIvyGitRepo/repository/public/[organisation]/[module]/[revision]/ivy.xml"
     artifactPattern "file:///$releasePlugin.inversoftIvyGitRepo/repository/public/[organisation]/[module]/[revision]/[type]s/[artifact]-[revision].[ext]"
   }
