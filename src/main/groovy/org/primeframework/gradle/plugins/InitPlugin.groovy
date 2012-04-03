@@ -33,6 +33,10 @@ import org.gradle.api.tasks.bundling.Jar
 class InitPlugin implements Plugin<Project> {
   def void apply(Project project) {
 
+    // make sure debug level is set for compilation
+    project.compileJava.options.debugOptions.debugLevel = "source,lines,vars"
+    project.compileTestJava.options.debugOptions.debugLevel = "source,lines,vars"
+
     // add the inversoft public repository
     project.repositories {
       ivy {
@@ -42,8 +46,10 @@ class InitPlugin implements Plugin<Project> {
       }
     }
 
+    // add source configuration
     project.configurations.add("sources")
 
+    // init some configurations
     project.configurations {
       compileOnly {
         transitive = false
@@ -91,7 +97,7 @@ class InitPlugin implements Plugin<Project> {
       }
     }
 
-    // Add the source JAR
+    // Add the source jar task
     project.task("sourceJar", type: Jar) {
       if (project.sourceSets.main.hasProperty("groovy")) {
         from project.sourceSets.main.groovy
@@ -102,6 +108,7 @@ class InitPlugin implements Plugin<Project> {
       classifier = "sources"
     }
 
+    // add source jar artifact
     project.artifacts {
       sources(project.sourceJar) {
         type "source"

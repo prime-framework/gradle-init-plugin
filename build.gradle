@@ -3,7 +3,7 @@ apply plugin: "idea"
 apply plugin: "release"
 
 group = "org.primeframework.gradle"
-version = "0.1"
+version = "0.2"
 description = "The Init Plugin"
 sourceCompatibility = 1.6
 
