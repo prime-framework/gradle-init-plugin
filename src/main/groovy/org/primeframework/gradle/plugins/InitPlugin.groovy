@@ -37,6 +37,9 @@ class InitPlugin implements Plugin<Project> {
     project.compileJava.options.debugOptions.debugLevel = "source,lines,vars"
     project.compileTestJava.options.debugOptions.debugLevel = "source,lines,vars"
 
+    // add utf-8 encoding for all java files
+    [project.compileJava, project.compileTestJava]*.options*.encoding = 'UTF-8'
+
     // add the inversoft public repository
     project.repositories {
       ivy {
